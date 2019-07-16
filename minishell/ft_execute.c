@@ -6,51 +6,31 @@
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 10:44:45 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/09/13 17:22:45 by mnkebeny         ###   ########.fr       */
+/*   Updated: 2018/09/28 10:42:30 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*char 	*builtin_str[] = {
-	"cd",
-	"exit",
-	"env"
-};
-
-int		(*builtin_func[]) (int, char **) = {
-	&ft_cd,
-	&ft_exit,
-	&ft_env
-};
-
-int		ft_builtins()
+int	ft_execute(char **args)
 {
-	return (sizeof(builtin_str) / sizeof(char *));
-};
-
-int 	ft_execute(char *path, char **args)
-{
-	int i;
-
-	i = 0;
-	if (args[0] == NULL)
+	if (!args[0])
 		return (1);
-	while (i < ft_builtins())
-	{
-		if (ft_strcmp(args[i],builtin_str[i]) == 0)
-			return (*builtin_func[i])(0, args);
-		i++;
-	}
-	return (ft_launch(path, args));
-}*/
-
-int 	ft_execute(char *path, char **args)
-{
-	(void)path;
-//	path = *g_env;
-//	ft_putendl(path);
-	if (ft_strcmp(*args, "cd") == 0)
-		ft_cd(path, args);
-	return (ft_launch(&path, args));
+	if (ft_strcmp(args[0], "env") == 0)
+		ft_printenv();
+	else if (ft_strcmp(args[0], "setenv") == 0)
+		ft_setenv(args);
+	else if (ft_strcmp(args[0], "unsetenv") == 0)
+		ft_unsetenv(args);
+	else if (ft_strcmp(args[0], "cd") == 0)
+		ft_cd(args);
+	else if (ft_strcmp(args[0], "echo") == 0)
+		ft_echo(args);
+	else if (ft_strcmp(args[0], "exit") == 0)
+		ft_exit(args);
+	else if (ft_strcmp(args[0], "clear") == 0)
+		ft_clear();
+	else
+		ft_launch(args);
+	return (0);
 }

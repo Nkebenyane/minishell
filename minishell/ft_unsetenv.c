@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/24 16:25:12 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/06/06 10:10:26 by mnkebeny         ###   ########.fr       */
+/*   Created: 2018/09/22 03:45:37 by mnkebeny          #+#    #+#             */
+/*   Updated: 2018/09/28 09:09:40 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+int			ft_unsetenv(char **args)
 {
-	int	i;
-	int	j;
+	int		i;
 
-	i = 0;
-	while (s1[i] != '\0')
-		i++;
-	j = 0;
-	while (s2[j] != '\0')
+	i = -1;
+	if (!args[1])
 	{
-		s1[i] = s2[j];
-		j++;
-		i++;
+		ft_putendl("Environment Error : No path found !");
+		return (1);
 	}
-	s1[i] = '\0';
-	return (s1);
+	while (g_env[++i])
+	{
+		if (ft_strstr(g_env[i], args[1]))
+		{
+			while (g_env[i + 1])
+			{
+				g_env[i] = ft_strdup(g_env[1 + i]);
+				i++;
+			}
+			g_env[i] = NULL;
+		}
+	}
+	return (0);
 }

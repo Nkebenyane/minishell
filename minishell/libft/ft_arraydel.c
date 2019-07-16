@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_launch.c                                        :+:      :+:    :+:   */
+/*   ft_arraydel.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/07 08:45:30 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/09/13 17:11:03 by mnkebeny         ###   ########.fr       */
+/*   Created: 2018/09/22 06:14:40 by mnkebeny          #+#    #+#             */
+/*   Updated: 2018/09/22 07:43:40 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int		ft_launch(char **path, char **args)
+int		ft_arraydel(char ***arr)
 {
-	pid_t	child;
 	int i;
 
 	i = 0;
-	(void)path;	
-	child = fork();
-	if (child == 0)
-	{
-		ft_cpy(path);
-		ft_putendl(path);
-		if (execve(*path, args, g_env) == -1)
-			perror("it's crazy");
-		exit(0);
-	}
-	else
-		wait(&child);
-	return (0);
+	if (!*arr)
+		return (1);
+	while ((*arr)[i])
+		i++;
+	i--;
+	while (i >= 0)
+		ft_strdel(&(*arr)[i--]);
+	free(*arr);
+	*arr = NULL;
+	return (1);
 }

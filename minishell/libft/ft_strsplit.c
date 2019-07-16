@@ -6,7 +6,7 @@
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 11:20:35 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/08/26 17:37:11 by mnkebeny         ###   ########.fr       */
+/*   Updated: 2018/09/27 09:35:14 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,44 +33,47 @@ static int		ft_nwrds(char const *s)
 	return (count);
 }
 
-static char		*ft_strndup(char const *s, int len)
+char    **ft_strsplit(char const *s, char c)
 {
-	char	*dst;
-	int		i;
+	int z = 0;
+    size_t  i;
+    size_t  d;
+    size_t  start;
+    char    **str;
 
-	i = 0;
-	dst = (char *)malloc(sizeof(char) * (len + 1));
-	while (i < len)
+    str = NULL;
+    i = 0;
+    d = 0;
+
+	if (c == ' ')
+		z = ft_nwrds(s);
+	else
 	{
-		dst[i] = s[i];
-		i++;
+		while (s[i])
+		{
+			if (s[i] == c)
+			{
+				z++;
+			}
+			i++;
+		}
 	}
-	dst[len] = '\0';
-	return (dst);
-}
-
-char			**ft_strsplit(char const *str, char c)
-{
-	char	**arr;
-	int		j;
-	int 	i;
-	int		x;
-
-	arr = (char **)malloc(sizeof(char *) * (ft_nwrds(str) + 1));
+	if (!s || !(str = (char **)malloc(sizeof(char *) * (ft_strlen(s) + 1))))
+        return (NULL);
 	i = 0;
-	j = 0;
-	x = 0;
-	while (x < ft_nwrds(str))
-	{
-		while  (str[i] && (str[i] == c))
-			i++;
-		j = i;
- 		while (str[i] && !(str[i] == c))
-			i++;
-		if (j < i)
-			arr[x++] = ft_strndup(str + j, i - j);
-	}
-	arr[x] = NULL;
-	return (arr);
+	while (s[i] != '\0')
+    {
+        while (s[i] == c && s[i])
+            i++;
+        start = i;
+        while (s[i] && s[i] != c)
+            i++;
+        if (i > start)
+        {
+            str[d++] = ft_strsub(s, start, (i - start));
+		}
+        i++;
+    }
+    str[d] = NULL;
+    return (str);
 }
-

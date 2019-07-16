@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_clear.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/24 16:25:12 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/06/06 10:10:26 by mnkebeny         ###   ########.fr       */
+/*   Created: 2018/09/21 14:15:12 by mnkebeny          #+#    #+#             */
+/*   Updated: 2018/09/25 18:01:59 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+void	ft_clear(void)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (s1[i] != '\0')
-		i++;
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		s1[i] = s2[j];
-		j++;
-		i++;
-	}
-	s1[i] = '\0';
-	return (s1);
+	ft_putstr("\033[1;1H\033[2J");
 }

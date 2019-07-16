@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_arraydup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/24 16:25:12 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/06/06 10:10:26 by mnkebeny         ###   ########.fr       */
+/*   Created: 2018/09/22 07:32:29 by mnkebeny          #+#    #+#             */
+/*   Updated: 2018/09/22 08:05:58 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+char	**ft_arraydup(char ***arr)
 {
-	int	i;
-	int	j;
+	int		i;
+	char	**new;
 
 	i = 0;
-	while (s1[i] != '\0')
+	while ((*arr)[i])
 		i++;
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		s1[i] = s2[j];
-		j++;
-		i++;
-	}
-	s1[i] = '\0';
-	return (s1);
+	if (!(new = (char **)malloc(sizeof(char*) * (i + 1))))
+		return (NULL);
+	i = -1;
+	while ((*arr)[++i])
+		new[i] = ft_strdup((*arr)[i]);
+	new[i] = NULL;
+	ft_arraydel(arr);
+	return (new);
 }
+

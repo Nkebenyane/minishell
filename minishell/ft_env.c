@@ -1,55 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printenv.c                                      :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/13 08:43:53 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/09/13 12:34:11 by mnkebeny         ###   ########.fr       */
+/*   Created: 2018/09/25 16:46:44 by mnkebeny          #+#    #+#             */
+/*   Updated: 2018/09/28 11:16:44 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern	char **environ;
-
-int prefix(char *cp, char *dp)
+int			env_len(char **str)
 {
-	while (*cp && *dp && *cp == *dp)
-		cp++, dp++;
-	if (*cp == 0)
-		return (*dp == '=');
-	return (0);
+	int		i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-int ft_env(int argc, char **argv)
+void		ft_cpy(char **av)
 {
-	register char **ep;
-	int found = 0;
+	int		i;
 
-	argc--, argv++;
-	if (environ)
+	g_env = (char **)malloc(sizeof(char*) * env_len(av) + 1);
+	i = 0;
+	while (*av != NULL)
 	{
-		ep = environ;
-		while (*ep)
-		{
-			if (argc == 0 || prefix(argv[0], *ep))
-			{
-				register char *cp = *ep;
-
-				found++;
-				if (argc)
-				{
-					while (*cp && *cp != '=')
-						cp++;
-					if (*cp == '=')
-						cp++;
-				}
-				printf("%s\n", cp);
-			}
-			ep++;
-		}
+		g_env[i] = ft_strdup(*av);
+		i++;
+		av++;
 	}
-	exit (!found);
+	g_env[i] = NULL;
+}
+
+void		ft_printenv(void)
+{
+	int		i;
+
+	i = 0;
+	while (g_env[i])
+	{
+		ft_putendl(g_env[i]);
+		i++;
+	}
 }

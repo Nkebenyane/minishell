@@ -6,7 +6,7 @@
 /*   By: mnkebeny <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/16 09:29:07 by mnkebeny          #+#    #+#             */
-/*   Updated: 2018/09/07 16:49:15 by mnkebeny         ###   ########.fr       */
+/*   Updated: 2018/09/27 13:48:37 by mnkebeny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		get_chr(char **str, char **line, int r)
 		hold = ft_strdup(*str + i + 1);
 		free(*str);
 		*str = ft_strdup(hold);
-		free(hold);
+		ft_strdel(&hold);
 		return (1);
 	}
 	if ((*str)[i] == '\0' && r == 0)
@@ -45,7 +45,7 @@ int		get_chr(char **str, char **line, int r)
 		hold = ft_strsub(*str, i, ft_strlen(*str));
 		free(*str);
 		*str = ft_strdup(hold);
-		free(hold);
+		ft_strdel(&hold);
 		return (1);
 	}
 	return (0);
