@@ -14,12 +14,12 @@ You must manage the errors without using errno, by displaying a message adapted 
 You must deal correctly with the PATH and the environment (copy of system char **environ).
 
 # You must implement a series of builtins:
-exit
-echo
-cd
-env
-setenv
-unsetenv
+1. exit
+2. echo
+3. cd
+4. env
+5. setenv
+6. unsetenv
 
 You can choose as a reference whatever shell you prefer.
 You must manage expansions $ and ~
