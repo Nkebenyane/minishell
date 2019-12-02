@@ -2,8 +2,8 @@
 my first minishell
 
 # 42.Minishell
-About
-Instructions
+
+# Instructions
 You must program a mini UNIX command interpreter.
 This interpreter must display a prompt (a simple $> for example) and wait till you type a command line, validated by pressing enter.
 The prompt is shown again only once the command has been completely executed.
@@ -13,7 +13,7 @@ In cases where the executable cannot be found, it has to show an error message a
 You must manage the errors without using errno, by displaying a message adapted to the error output.
 You must deal correctly with the PATH and the environment (copy of system char **environ).
 
-You must implement a series of builtins:
+# You must implement a series of builtins:
 exit
 echo
 cd
@@ -24,7 +24,7 @@ unsetenv
 You can choose as a reference whatever shell you prefer.
 You must manage expansions $ and ~
 
-Allowed Functions
+# Allowed Functions
 malloc, free
 access
 open, close, read, write
