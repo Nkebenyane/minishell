@@ -34,4 +34,4 @@ You must manage expansions $ and ~
 7. fork, execve
 8. wait, waitpid, wait3, wait4
 9. signal, kill
-10. exi
+10. exit
