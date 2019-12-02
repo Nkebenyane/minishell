@@ -25,14 +25,13 @@ You can choose as a reference whatever shell you prefer.
 You must manage expansions $ and ~
 
 # Allowed Functions
-malloc, free
-access
-open, close, read, write
-opendir, readdir, closedir
-getcwd, chdir
-stat, lstat, fstat
-fork, execve
-wait, waitpid, wait3, wait4
-signal, kill
-exit
-Project Structure
+1. malloc, free
+2. access
+3. open, close, read, write
+4. opendir, readdir, closedir
+5. getcwd, chdir
+6. stat, lstat, fstat
+7. fork, execve
+8. wait, waitpid, wait3, wait4
+9. signal, kill
+10. exi
