@@ -1,5 +1,3 @@
-# minishell
-my first minishell
 
 # 42.Minishell
 
